@@ -34,4 +34,9 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Icons\" />
+    <Folder Include="Themes\" />
+  </ItemGroup>
+
 </Project>

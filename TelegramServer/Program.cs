@@ -67,21 +67,16 @@ class Program
         {
             try
             {
-                Console.WriteLine("We are in broadcast dis");
                 var disconnectPacket = new PacketBuilder();
-                Console.WriteLine("We are in broadcast dis 1");
                 disconnectPacket.WriteOpCode(10);
-                Console.WriteLine("We are in broadcast dis 2");
                 disconnectPacket.WriteMessage(msg);
-                Console.WriteLine("We are in broadcast dis 3");
                 client.ClientSocket.Client.Send(disconnectPacket.GetPacketSize());
-                Console.WriteLine("We are in broadcast dis 4");
-            } catch(Exception e) 
+            } 
+            catch(Exception e) 
             {
                 Console.WriteLine(e.ToString());
             }
         }
-        Console.WriteLine("We are in broadcast dis 222");
         BroadcastMessage($"{disconnectedClient.Username} has disconnected");
     }
 }

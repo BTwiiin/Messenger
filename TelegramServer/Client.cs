@@ -39,20 +39,20 @@ namespace TelegramServer
                             Console.WriteLine($"{msg}: received!");
                             Program.BroadcastMessage(msg);
                             break;
+                        case 10:
+                            Console.WriteLine($"{UID.ToString()} - Disconnected");
+                            Program.BroadcastDisconnect(UID.ToString());
+                            ClientSocket.Close();
+                            break;
                         default:
                             break;
                     }
                 }
                 catch(Exception)
                 {  
-                    Console.WriteLine($"Sth weird");
-                    Console.WriteLine($"Opcode");
                     Console.WriteLine($"{UID.ToString()} - Disconnected");
-                    Console.WriteLine($"After Disconnected");
                     Program.BroadcastDisconnect(UID.ToString());
-                    Console.WriteLine($"After Broadcast");
                     ClientSocket.Close();
-                    Console.WriteLine($"After Close");
                     break;
                 }
             }

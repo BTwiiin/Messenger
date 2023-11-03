@@ -5,6 +5,7 @@ using System.Net.Sockets;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Interop;
 using TelegramClient.Net.IO;
 
 namespace TelegramClient.Net
@@ -73,6 +74,13 @@ namespace TelegramClient.Net
             var sendingPacket = new PacketBuilder();
             sendingPacket.WriteOpCode(5);
             sendingPacket.WriteMessage(msg);
+            _tcpClient.Client.Send(sendingPacket.GetPacketSize());
+        }
+
+        public void Close()
+        {
+            var sendingPacket = new PacketBuilder();
+            sendingPacket.WriteOpCode(10);
             _tcpClient.Client.Send(sendingPacket.GetPacketSize());
         }
     }

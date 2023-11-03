@@ -5,7 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TelegramClone" xmlns:viewmodel="clr-namespace:TelegramClient.MVVM.ViewModel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="474" Width="816">
+        Height="670" Width="1200"
+        ResizeMode="CanResizeWithGrip"
+        AllowsTransparency="True"
+        WindowStyle="None">
 
     <Window.DataContext>
         <viewmodel:MainWindowViewModel/>
@@ -16,8 +19,43 @@
             <ColumnDefinition Width="200"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
 
-        <DockPanel>
+        <Border Grid.ColumnSpan="2"
+                Background="#D3D3D3"
+                MouseDown="Border_MouseDown">
+            <Grid HorizontalAlignment="Stretch">
+                <Label
+                    Content="MyTelegram"
+                    Foreground="Black"
+                    FontWeight="Bold"/>
+                <StackPanel HorizontalAlignment="Right"
+                            Orientation="Horizontal">
+                    <Button Width="20" Height="20"
+                            BorderThickness="0"
+                            Background="Transparent"
+                            Content="_"
+                            Margin="0,0,0,4"
+                            Click="ButtonMinimize_Click"/>
+                    <Button Width="20" Height="20"
+                            BorderThickness="0"
+                            Background="Transparent"
+                            Content="◻"
+                            Click="ButtonMaximize_Click"/>
+                    <Button Width="20" Height="20"
+                            BorderThickness="0"
+                            Background="Transparent"
+                            Content="🞪"
+                            Command="{Binding ShutDownWindowCommand}"
+                            Click="ButtonShutDownWindow_Click"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+        
+        <DockPanel Grid.Row="1">
             <TextBox Height="25"
                      DockPanel.Dock="Top"
                      Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"/>
@@ -34,15 +72,16 @@
             </ListView>
         </DockPanel>
 
-        <StackPanel Grid.Column="1">
-            <ListView Height="380"
+        <StackPanel Grid.Column="1" Grid.Row="1">
+            <ListView Height="579"
+                      Background="#90ee90"
                       ItemsSource="{Binding Messages}"/>
             <StackPanel Orientation="Horizontal">
-                <TextBox Height="55"
-                         Width="545"
+                <TextBox Height="71"
+                         Width="872"
                          Text="{Binding Message, UpdateSourceTrigger=PropertyChanged}"
                          VerticalContentAlignment="Center"/>
-                <Button Width="55"
+                <Button Width="129"
                         Content="Send"
                         Command="{Binding SendMessageCommand}"/>
             </StackPanel>

@@ -17,6 +17,8 @@ namespace TelegramClient.MVVM.ViewModel
         public string Message { get; set; }
         public RelayCommand SendMessageCommand { get; set; }
 
+        public RelayCommand ShutDownWindowCommand { get; set; }
+
         public string? Username { get; set; }
 
         private Server _server;
@@ -30,6 +32,7 @@ namespace TelegramClient.MVVM.ViewModel
             _server.connectionEvent += UserConnected;
             SendMessageCommand = new RelayCommand(o => _server.SendMessage(Message), o => !string.IsNullOrEmpty(Message));
             ConnectToServerCommand = new RelayCommand(o =>  _server.ConnectToServer(Username), o => !string.IsNullOrEmpty(Username));
+            ShutDownWindowCommand = new RelayCommand(o => _server.Close());
         }
 
         private void RemoveUser()
