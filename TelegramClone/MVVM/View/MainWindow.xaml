@@ -10,10 +10,6 @@
         AllowsTransparency="True"
         WindowStyle="None">
 
-    <Window.DataContext>
-        <viewmodel:MainWindowViewModel/>
-    </Window.DataContext>
-    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
