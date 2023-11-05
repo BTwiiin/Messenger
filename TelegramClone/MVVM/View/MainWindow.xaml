@@ -63,13 +63,18 @@
                     DockPanel.Dock="Top"
                     Content="Connect" 
                     Command="{Binding ConnectToServerCommand}"/>
-            <ListView ItemsSource="{Binding Clients}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Username}"/>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
+            <ListView ItemsSource="{Binding Clients}"
+                      Background="Transparent"
+                      Grid.Row="1"
+                      BorderThickness="0">
+                
+                <ListView.ItemContainerStyle>
+                    <Style BasedOn="{StaticResource UserListView}" TargetType="ListViewItem"/>
+                </ListView.ItemContainerStyle>
             </ListView>
+
+
+
         </DockPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="1">

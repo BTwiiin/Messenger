@@ -73,6 +73,7 @@ namespace TelegramClient.Net
         {
             var sendingPacket = new PacketBuilder();
             sendingPacket.WriteOpCode(5);
+            msg = $"[{DateTime.Now}] - " + msg;
             sendingPacket.WriteMessage(msg);
             _tcpClient.Client.Send(sendingPacket.GetPacketSize());
         }

@@ -55,14 +55,7 @@ class Program
     public static void BroadcastDisconnect(string msg)
     {
         var disconnectedClient = _clients.Where(x => x.UID.ToString() == msg).FirstOrDefault();
-        Console.WriteLine($"Here it is {msg}");
         _clients.Remove(disconnectedClient);
-        foreach (var client in _clients)
-        {
-            int i = 1;
-            Console.WriteLine($"{i} {client.Username}");
-            i++;
-        }
         foreach (var client in _clients)
         {
             try
@@ -77,6 +70,6 @@ class Program
                 Console.WriteLine(e.ToString());
             }
         }
-        BroadcastMessage($"{disconnectedClient.Username} has disconnected");
+        BroadcastMessage($"[{DateTime.Now}] - {disconnectedClient.Username} has disconnected");
     }
 }

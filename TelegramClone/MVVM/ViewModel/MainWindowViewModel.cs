@@ -26,10 +26,13 @@ namespace TelegramClient.MVVM.ViewModel
         {
             Clients = new ObservableCollection<ClientModel>();
             Messages = new ObservableCollection<string>();
+
             _server = new Server();
+
             _server.disconnectionEvent += RemoveUser;
             _server.msgEvent += MessageReceived;
             _server.connectionEvent += UserConnected;
+
             SendMessageCommand = new RelayCommand(o => _server.SendMessage(Message), o => !string.IsNullOrEmpty(Message));
             ConnectToServerCommand = new RelayCommand(o =>  _server.ConnectToServer(Username), o => !string.IsNullOrEmpty(Username));
             ShutDownWindowCommand = new RelayCommand(o => _server.Close());
