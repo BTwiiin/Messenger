@@ -10,6 +10,7 @@
         AllowsTransparency="True"
         WindowStyle="None">
 
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
@@ -59,14 +60,22 @@
                     DockPanel.Dock="Top"
                     Content="Connect" 
                     Command="{Binding ConnectToServerCommand}"/>
+            <Button Height="25"
+                    DockPanel.Dock="Bottom"
+                    Content="Go To Log In" 
+                    Command="{Binding NavigateLoginCommand}"/>
+            <Button Height="25"
+                    DockPanel.Dock="Bottom"
+                    Content="Go To Registration" 
+                    Command="{Binding NavigateRegistrationCommand}"/>
             <ListView ItemsSource="{Binding Clients}"
                       Background="Transparent"
                       Grid.Row="1"
                       BorderThickness="0">
-                
-                <ListView.ItemContainerStyle>
+
+                <ListView.Resources>
                     <Style BasedOn="{StaticResource UserListView}" TargetType="ListViewItem"/>
-                </ListView.ItemContainerStyle>
+                </ListView.Resources>
             </ListView>
 
 
@@ -87,6 +96,8 @@
                         Command="{Binding SendMessageCommand}"/>
             </StackPanel>
         </StackPanel>
-        
+
+        <ContentControl Content="{Binding Navigation.CurrentView}" Grid.Row="1" Grid.Column="1"/>
+
     </Grid>
 </Window>

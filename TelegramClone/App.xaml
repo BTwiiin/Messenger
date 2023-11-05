@@ -1,11 +1,22 @@
 ﻿<Application x:Class="TelegramClone.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:viewModel="clr-namespace:TelegramClient.MVVM.ViewModel"
+             xmlns:view="clr-namespace:TelegramClient.MVVM.View">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="./Themes/UsersListViewTheme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+
+
+            <DataTemplate DataType="{x:Type TypeName=viewModel:LoginPageViewModel}">
+                <view:LoginPage/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type TypeName=viewModel:RegistrationPageViewModel}">
+                <view:RegistrationPage/>
+            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

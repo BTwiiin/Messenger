@@ -1,6 +1,9 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Windows;
+using TelegramClient.MVVM.Core;
 using TelegramClient.MVVM.ViewModel;
+using TelegramClient.Services;
 
 namespace TelegramClone
 {
@@ -18,6 +21,12 @@ namespace TelegramClone
                 DataContext = provider.GetRequiredService<MainWindowViewModel>()
             });
             services.AddSingleton<MainWindowViewModel>();
+            services.AddSingleton<LoginPageViewModel>();
+            services.AddSingleton<RegistrationPageViewModel>();
+            services.AddSingleton<INavigationService, NavigationService>();
+
+            services.AddSingleton<Func<Type, BaseViewModel>>(serviceProvider => viewModelType
+                                => (BaseViewModel)serviceProvider.GetRequiredService(viewModelType));
 
             _serviceProvider = services.BuildServiceProvider();
         }
